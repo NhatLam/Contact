@@ -1,0 +1,102 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <ImageView
+        android:id="@+id/img_backgroundscreen2"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/aaa" />
+
+    <TextView
+        android:id="@+id/tv_namescreen2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="70dp"
+        android:layout_marginTop="250dp"
+        android:textSize="35sp"
+        android:textStyle="bold"
+
+
+        />
+
+    <TextView
+        android:id="@+id/tv_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="130dp"
+        android:layout_marginTop="365dp"
+        android:textSize="25sp">
+
+    </TextView>
+
+    <ImageView
+        android:id="@+id/img_numberphone"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="360dp"
+        android:src="@drawable/callme" />
+
+    <TextView
+        android:id="@+id/tv_mail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="130dp"
+        android:layout_marginTop="460dp"
+        android:textSize="25sp"
+
+        />
+
+    <ImageView
+        android:id="@+id/img_mail"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="460dp"
+        android:src="@drawable/mail" />
+
+    <ImageView
+        android:id="@+id/btn_back"
+        android:layout_width="30dp"
+        android:layout_height="50dp"
+
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="15dp"
+        android:src="@drawable/back" />
+
+    <ImageView
+        android:id="@+id/btn_edit"
+        android:layout_width="22dp"
+        android:layout_height="22dp"
+        android:src="@drawable/pen"
+        android:layout_marginTop="28dp"
+        android:layout_marginRight="20dp"
+        android:layout_toLeftOf="@+id/imgdote"
+
+        />
+
+    <ImageView
+        android:id="@+id/imgdote"
+        android:layout_width="22dp"
+        android:layout_height="19dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="28dp"
+        android:src="@drawable/dote" />
+
+    <ImageView
+        android:id="@+id/btnvip"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="30dp"
+        android:layout_marginLeft="330dp"
+        android:layout_marginTop="270dp"
+        android:src="@drawable/nonpress" />
+
+</RelativeLayout>

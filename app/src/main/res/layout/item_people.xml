@@ -1,0 +1,26 @@
+<RelativeLayout android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout"
+    android:layout_marginBottom="30dp"
+    >
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="25dp"
+        android:text="sadsadsad"
+        android:layout_marginLeft="30dp"
+        />
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="45dp"
+        android:layout_height="50dp"
+        android:id="@+id/img_person"
+        android:src="@drawable/empty"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="20dp"
+        android:layout_alignRight="@+id/tv_name"
+        />
+
+
+</RelativeLayout>

@@ -1,0 +1,50 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Name:"
+        android:layout_marginTop="40dp"
+        android:textSize="20dp"/>
+    <EditText
+        android:id="@+id/ed_edname"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:hint="Input name"
+        android:layout_marginTop="60dp"/>
+    <TextView
+        android:text="Number phone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="150dp"
+        android:textSize="20dp"/>
+    <EditText
+        android:id="@+id/ed_ednumberphone"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:hint="Input number"
+        android:inputType="phone"
+        android:layout_marginTop="170dp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Email:"
+        android:layout_marginTop="260dp"
+        android:textSize="20dp"/>
+    <EditText
+        android:id="@+id/ed_edmail"
+        android:hint="Input email"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="280dp"/>
+    <Button
+        android:id="@+id/btn_edsubmit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="OK"
+        android:layout_marginTop="350dp"
+        android:layout_marginLeft="130dp"/>
+</RelativeLayout>
