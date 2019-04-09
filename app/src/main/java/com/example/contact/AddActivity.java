@@ -28,7 +28,6 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
             peo.setName(edName.getText().toString());
             peo.setNumberPhone(edNumberphone.getText().toString());
             peo.setMail(edMail.getText().toString());
-         //   peo.setPic("");
             Intent add=new Intent(this,MainActivity.class);
 
              add.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

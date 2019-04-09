@@ -1,14 +1,7 @@
 package com.example.contact;
-
-
 import android.arch.persistence.room.Room;
 import android.arch.persistence.room.RoomDatabase;
 import android.content.Context;
-
-
-
-
-
 
 @android.arch.persistence.room.Database(entities = People.class,version = Database.DATABASE_VERSION)
 public abstract  class Database extends RoomDatabase {

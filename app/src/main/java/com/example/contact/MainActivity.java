@@ -16,19 +16,15 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-
 import android.view.Menu;
 import android.view.MenuItem;
 import android.support.v7.widget.SearchView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.support.v7.widget.Toolbar;
-
 import java.util.ArrayList;
-
 import java.util.Collections;
 import java.util.Comparator;
-
 import java.util.Random;
 
 
@@ -69,20 +65,21 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         rv.setHasFixedSize(true);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         rv.setLayoutManager(layoutManager);
+        //Ktra xem co nguoi duoc add hay khong?
+        People peoAdd = (People) getIntent().getSerializableExtra("data");
 
-        People peoadd = (People) getIntent().getSerializableExtra("data");
-
-        if (peoadd != null) {
-            peoadd.setId(getSaltString());
-            dao.insert(peoadd);
+        if (peoAdd != null) {
+            peoAdd.setId(getSaltString());
+            dao.insert(peoAdd);
         }
-        People peopleedit = (People) getIntent().getSerializableExtra("dataedit");
-        if (peopleedit != null) {
+        //Ktra xem co nguoi duoc sua hay khong?
+        People peopleEdit = (People) getIntent().getSerializableExtra("dataedit");
+        if (peopleEdit != null) {
             Intent goi = getIntent();
             Bundle goibundle = goi.getBundleExtra("dataid");
             String id = goibundle.getString("id");
-            peopleedit.setId(id);
-            dao.updateUser(peopleedit);
+            peopleEdit.setId(id);
+            dao.updateUser(peopleEdit);
         }
         for (int i = 0; i < dao.getAll().size(); i++) {
             dsPeople.add(dao.getAll().get(i));

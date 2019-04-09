@@ -4,10 +4,8 @@ package com.example.contact;
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.Ignore;
-
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
-
 import java.io.Serializable;
 
 @Entity(tableName = "data")
@@ -25,6 +23,7 @@ public class People implements Serializable {
     String mail;
     @ColumnInfo(name = "url")
     String urlPicture;
+
     @Ignore
     public People(@NonNull String id, String name, String numberPhone, String mail, String urlPicture) {
         this.id = id;
@@ -33,11 +32,10 @@ public class People implements Serializable {
         this.mail = mail;
         this.urlPicture = urlPicture;
     }
+
     public People() {
 
     }
-
-
 
 
     public String getName() {

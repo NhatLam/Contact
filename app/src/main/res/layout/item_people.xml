@@ -9,7 +9,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="25dp"
-        android:text="sadsadsad"
         android:layout_marginLeft="30dp"
         />
     <de.hdodenhof.circleimageview.CircleImageView
