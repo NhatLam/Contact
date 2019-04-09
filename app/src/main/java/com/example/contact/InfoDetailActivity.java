@@ -1,8 +1,12 @@
 package com.example.contact;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.AppCompatDelegate;
 import android.view.View;
@@ -15,8 +19,9 @@ public class InfoDetailActivity extends AppCompatActivity implements View.OnClic
     ImageView imgMail;
     ImageView btnBack;
     ImageView imgVip;
-    TextView name;
-    TextView numberPhone;
+    ImageView imgPhone;
+    TextView tvName;
+    TextView tvNumberphone;
     TextView tvEmail;
     ImageView imgEdit;
     People people;
@@ -31,17 +36,18 @@ public class InfoDetailActivity extends AppCompatActivity implements View.OnClic
 
         urlPic = findViewById(R.id.img_backgroundscreen2);
         imgMail = findViewById(R.id.img_mail);
-        name = findViewById(R.id.tv_namescreen2);
-        numberPhone = findViewById(R.id.tv_number);
+        tvName = findViewById(R.id.tv_namescreen2);
+        tvNumberphone = findViewById(R.id.tv_number);
         tvEmail = findViewById(R.id.tv_mail);
         imgEdit = findViewById(R.id.btn_edit);
+        imgPhone=findViewById(R.id.img_numberphone);
         people = (People) getIntent().getSerializableExtra("data");
         Intent nhanvitri = getIntent();
         Bundle nhandata = nhanvitri.getBundleExtra("dataid");
 
         viTri = nhandata.getString("id");
-        name.setText(people.getName());
-        numberPhone.setText(people.getNumberPhone());
+        tvName.setText(people.getName());
+        tvNumberphone.setText(people.getNumberPhone());
         tvEmail.setText(people.getMail());
         imgVip = findViewById(R.id.btn_vip);
         if (people.getMail() == null) {
@@ -58,7 +64,7 @@ public class InfoDetailActivity extends AppCompatActivity implements View.OnClic
         btnBack = findViewById(R.id.btn_back);
         btnBack.setOnClickListener(this);
         imgEdit.setOnClickListener(this);
-
+        imgPhone.setOnClickListener(this);
     }
 
     @Override
@@ -84,6 +90,11 @@ public class InfoDetailActivity extends AppCompatActivity implements View.OnClic
             screenedit.putExtra("dataid", posi);
             startActivity(screenedit);
 
+        }
+        if(v.getId()==R.id.img_numberphone){
+            String phone = "+34666777888";
+            Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + tvNumberphone.getText()));
+            startActivity(intent);
         }
     }
 }

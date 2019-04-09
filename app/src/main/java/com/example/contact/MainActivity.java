@@ -31,6 +31,7 @@ import java.util.Random;
 public class MainActivity extends AppCompatActivity implements SearchView.OnQueryTextListener {
     private final static int MESSAGE_UPDATE_TEXT_CHILD_THREAD = 1;
     private static final int REQUEST_ID_READ_PERMISSION = 300;
+    private static final int REQUEST_ID_CALL_PERMISSION = 400;
     private static final int REQUEST_ID_WRITE_PERMISSION = 200;
     private static final int REQUEST_ID_READ_PERMISSION_PERMISSION = 100;
     ArrayList<People> dsPeople;
@@ -57,6 +58,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         askPermissionAndRead();
         askPermissionAndReadSQL();
         askPermissionAndWriteSQL();
+        askPermissionCall();
         dao = database.dao();
         dsPeople = new ArrayList();
 
@@ -254,7 +256,12 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
 
 
     }
+    private void askPermissionCall() {
+        boolean canRead = this.askPermission(REQUEST_ID_CALL_PERMISSION,
+                Manifest.permission.CALL_PHONE);
 
+
+    }
     private void askPermissionAndReadSQL() {
         boolean canRead = this.askPermission(REQUEST_ID_READ_PERMISSION,
                 Manifest.permission.READ_EXTERNAL_STORAGE);
@@ -306,6 +313,10 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
                     }
                 }
                 case REQUEST_ID_WRITE_PERMISSION: {
+                    if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    }
+                }
+                case REQUEST_ID_CALL_PERMISSION: {
                     if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     }
                 }
