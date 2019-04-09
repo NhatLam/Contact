@@ -92,7 +92,6 @@ public class InfoDetailActivity extends AppCompatActivity implements View.OnClic
 
         }
         if(v.getId()==R.id.img_numberphone){
-            String phone = "+34666777888";
             Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + tvNumberphone.getText()));
             startActivity(intent);
         }
