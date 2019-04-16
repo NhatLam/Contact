@@ -17,5 +17,9 @@
         android:title="Add new"
 
         />
+    <item
+        android:id="@+id/action_info"
+        android:title="info"
 
+        />
 </menu>

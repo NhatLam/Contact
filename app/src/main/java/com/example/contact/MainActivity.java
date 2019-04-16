@@ -3,6 +3,7 @@ package com.example.contact;
 import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.ContentResolver;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
@@ -16,6 +17,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.support.v7.widget.SearchView;
@@ -27,13 +29,13 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Random;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 
 public class MainActivity extends AppCompatActivity implements SearchView.OnQueryTextListener {
     private final static int MESSAGE_UPDATE_TEXT_CHILD_THREAD = 1;
-    private static final int REQUEST_ID_READ_PERMISSION = 300;
-    private static final int REQUEST_ID_CALL_PERMISSION = 400;
-    private static final int REQUEST_ID_WRITE_PERMISSION = 200;
-    private static final int REQUEST_ID_READ_PERMISSION_PERMISSION = 100;
     ArrayList<People> dsPeople;
 
     private Database database;
@@ -55,10 +57,9 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("");
         database = Database.getInstance(this);
-        askPermissionAndRead();
-        askPermissionAndReadSQL();
-        askPermissionAndWriteSQL();
-        askPermissionCall();
+
+        permission();
+
         dao = database.dao();
         dsPeople = new ArrayList();
 
@@ -106,7 +107,15 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         spinner.setAdapter(arrayAdapter);
 
     }
+    private  void permission(){
+        int Permission_All = 1;
 
+        String[] Permissions = {Manifest.permission.READ_CONTACTS, Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.CALL_PHONE,Manifest.permission.INTERNET };
+        if(!hasPermissions(this, Permissions)){
+            ActivityCompat.requestPermissions(this, Permissions, Permission_All);
+        }
+    }
     private void createUpdateUiHandler() {
         if (updateUIHandler == null) {
             updateUIHandler = new Handler() {
@@ -191,6 +200,11 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
                 add.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(add);
                 break;
+            case R.id.action_info:
+                Intent showDetail=new Intent(this,ShowdetailActivity.class);
+                startActivity(showDetail);
+
+                break;
 
         }
         return super.onOptionsItemSelected(item);
@@ -250,82 +264,22 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         return contactList;
     }
 
-    private void askPermissionAndRead() {
-        boolean canRead = this.askPermission(REQUEST_ID_READ_PERMISSION_PERMISSION,
-                Manifest.permission.READ_CONTACTS);
 
 
-    }
-    private void askPermissionCall() {
-        boolean canRead = this.askPermission(REQUEST_ID_CALL_PERMISSION,
-                Manifest.permission.CALL_PHONE);
 
+    public static boolean hasPermissions(Context context, String... permissions){
 
-    }
-    private void askPermissionAndReadSQL() {
-        boolean canRead = this.askPermission(REQUEST_ID_READ_PERMISSION,
-                Manifest.permission.READ_EXTERNAL_STORAGE);
-
-
-    }
-
-    private void askPermissionAndWriteSQL() {
-        boolean canRead = this.askPermission(REQUEST_ID_WRITE_PERMISSION,
-                Manifest.permission.WRITE_EXTERNAL_STORAGE);
-
-
-    }
-
-    private boolean askPermission(int requestId, String permissionName) {
-        if (android.os.Build.VERSION.SDK_INT >= 23) {
-
-            // Kiểm tra quyền
-            int permission = ActivityCompat.checkSelfPermission(this, permissionName);
-
-
-            if (permission != PackageManager.PERMISSION_GRANTED) {
-
-                this.requestPermissions(
-                        new String[]{permissionName},
-                        requestId
-                );
-                return false;
+        if(Build.VERSION.SDK_INT>=23 && context!=null && permissions!=null){
+            for(String permission: permissions){
+                if(ActivityCompat.checkSelfPermission(context, permission)!=PackageManager.PERMISSION_GRANTED){
+                    return  false;
+                }
             }
         }
         return true;
     }
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode,
-                                           String permissions[], int[] grantResults) {
 
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-
-
-        if (grantResults.length > 0) {
-            switch (requestCode) {
-                case REQUEST_ID_READ_PERMISSION_PERMISSION: {
-                    if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    }
-                }
-                case REQUEST_ID_READ_PERMISSION: {
-                    if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    }
-                }
-                case REQUEST_ID_WRITE_PERMISSION: {
-                    if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    }
-                }
-                case REQUEST_ID_CALL_PERMISSION: {
-                    if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    }
-                }
-
-            }
-        }
-
-
-    }
 
     @Override
     public boolean onQueryTextSubmit(String query) {

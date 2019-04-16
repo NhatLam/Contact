@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.AppCompatDelegate;
 import android.view.View;
@@ -26,14 +25,13 @@ public class InfoDetailActivity extends AppCompatActivity implements View.OnClic
     ImageView imgEdit;
     People people;
     String viTri;
-
+    MainActivity main;
     @SuppressLint("WrongViewCast")
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_infodetail);
 
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
-
         urlPic = findViewById(R.id.img_backgroundscreen2);
         imgMail = findViewById(R.id.img_mail);
         tvName = findViewById(R.id.tv_namescreen2);
@@ -92,6 +90,7 @@ public class InfoDetailActivity extends AppCompatActivity implements View.OnClic
 
         }
         if(v.getId()==R.id.img_numberphone){
+
             Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + tvNumberphone.getText()));
             startActivity(intent);
         }
