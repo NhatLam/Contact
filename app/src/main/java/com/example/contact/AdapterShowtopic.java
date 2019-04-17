@@ -36,7 +36,6 @@ public class AdapterShowtopic extends RecyclerView.Adapter<AdapterShowtopic.View
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
 
-        viewHolder.tvName.setText(topics.get(i).getName());
         viewHolder.tvTitle.setText(topics.get(i).getTitle());
         viewHolder.tvDes.setText(topics.get(i).getDescription());
         if (topics.get(i).getStatus().compareTo(1)==0) {
@@ -60,7 +59,7 @@ public class AdapterShowtopic extends RecyclerView.Adapter<AdapterShowtopic.View
 
 
     class ViewHolder extends RecyclerView.ViewHolder implements CompoundButton.OnCheckedChangeListener {
-        TextView tvName, tvTitle, tvDes;
+        TextView tvTitle, tvDes;
         Switch checkSta;
         private SOService mService;
 
@@ -68,7 +67,6 @@ public class AdapterShowtopic extends RecyclerView.Adapter<AdapterShowtopic.View
             super(itemView);
             mService = ApiUtils.getSOService();
 
-            tvName = itemView.findViewById(R.id.tv_name);
             tvTitle = itemView.findViewById(R.id.tv_title);
             tvDes = itemView.findViewById(R.id.tv_description);
             checkSta = itemView.findViewById(R.id.tv_statusin);

@@ -7,7 +7,6 @@ import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.widget.TextView;
 import android.widget.Toast;
 import java.util.ArrayList;
 import retrofit2.Call;
@@ -18,7 +17,6 @@ public class ShowdetailActivity extends AppCompatActivity {
     private SOService mService;
     AdapterShowtopic adapterShowtopic;
     RecyclerView rvDetail;
-    TextView tvStatus,tvMsgcode,tvSttcode;
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -30,16 +28,13 @@ public class ShowdetailActivity extends AppCompatActivity {
         rvDetail.setHasFixedSize(true);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         rvDetail.setLayoutManager(layoutManager);
-        tvStatus=findViewById(R.id.tv_status);
-        tvMsgcode=findViewById(R.id.tv_msgCode);
-        tvSttcode=findViewById(R.id.tv_sttCode);
 
         loadData();
 
     }
 
 
-
+//Code Okhttp de dung ve sau
 //    private void sendData() {
 //        final MediaType mediaType
 //                = MediaType.parse("application/json");
@@ -72,9 +67,6 @@ public class ShowdetailActivity extends AppCompatActivity {
 
             @Override
             public void onResponse(Call<Data> call, Response<Data> response) {
-                tvStatus.setText(response.body().getStatus());
-                tvMsgcode.setText(response.body().getMsgCode());
-                tvSttcode.setText(response.body().getSttCode());
 
                 ArrayList<Topic> tops= new ArrayList();
                 tops.addAll(response.body().getTopics());

@@ -2,61 +2,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-    <TextView
-        android:text="Status: "
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textStyle="bold"
-        android:textSize="17sp" />
 
-    <TextView
-        android:id="@+id/tv_status"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="17sp" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-    <TextView
-        android:text="Msg Code: "
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textStyle="bold"
-        android:textSize="17sp" />
-    <TextView
-        android:id="@+id/tv_msgCode"
-        android:layout_width="wrap_content"
-
-        android:layout_height="wrap_content"
-        android:textSize="17sp" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:text="Stt Code: "
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:textSize="17sp" />
-        <TextView
-            android:id="@+id/tv_sttCode"
-            android:layout_width="wrap_content"
-
-            android:layout_height="wrap_content"
-            android:textSize="17sp" />
-
-    </LinearLayout>
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyler_newtask"
         android:layout_width="match_parent"
