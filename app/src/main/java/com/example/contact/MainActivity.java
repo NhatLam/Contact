@@ -17,7 +17,6 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.support.v7.widget.SearchView;
@@ -27,20 +26,18 @@ import android.support.v7.widget.Toolbar;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.List;
 import java.util.Random;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+
 
 
 public class MainActivity extends AppCompatActivity implements SearchView.OnQueryTextListener {
     private final static int MESSAGE_UPDATE_TEXT_CHILD_THREAD = 1;
     ArrayList<People> dsPeople;
-
+    ProgressDialog progressDialog;
     private Database database;
     private PeopleDao dao;
-    ProgressDialog progressDialog;
     AdapterPeople adapter;
     Toolbar toolbar;
     Spinner spinner;
@@ -149,8 +146,9 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
             new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    for (int i = 0; i < getReadContacts().size(); i++) {
-                        People peoAddlist = getReadContacts().get(i);
+                    List<People> listPeople=getReadContacts();
+                    for (int i = 0; i < listPeople.size(); i++) {
+                        People peoAddlist = listPeople.get(i);
                         dao.insert(peoAddlist);
                         progressDialog.setProgress(i);
                     }
@@ -200,7 +198,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
                 add.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(add);
                 break;
-            case R.id.action_info:
+            case R.id.action_info   :
                 Intent showDetail=new Intent(this,ShowdetailActivity.class);
                 startActivity(showDetail);
 
@@ -289,6 +287,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
 
     @Override
     public boolean onQueryTextChange(String newText) {
+
         String input = newText.toLowerCase();
         ArrayList<People> newList = new ArrayList();
         for (People find : dsPeople) {

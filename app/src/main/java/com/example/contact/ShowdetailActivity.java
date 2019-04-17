@@ -1,5 +1,5 @@
 package com.example.contact;
-
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -7,31 +7,42 @@ import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 import java.util.ArrayList;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ShowdetailActivity extends AppCompatActivity {
+public class ShowdetailActivity extends AppCompatActivity implements View.OnClickListener {
     private SOService mService;
     AdapterShowtopic adapterShowtopic;
     RecyclerView rvDetail;
+    Toolbar toolbar;
+    ImageView imgBack;
+
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_newtask);
         mService = ApiUtils.getSOService();
-
+        toolbar = findViewById(R.id.toolbar_server);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("");
+        imgBack=findViewById(R.id.back_main);
         rvDetail = findViewById(R.id.recyler_newtask);
         rvDetail.setHasFixedSize(true);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         rvDetail.setLayoutManager(layoutManager);
 
+        imgBack.setOnClickListener(this);
         loadData();
 
     }
+
 
 
 //Code Okhttp de dung ve sau
@@ -83,4 +94,11 @@ public class ShowdetailActivity extends AppCompatActivity {
     }
 
 
+    @Override
+    public void onClick(View v) {
+        if (v.getId()==R.id.back_main){
+            Intent backMain= new Intent(this,MainActivity.class);
+            startActivity(backMain);
+        }
+    }
 }

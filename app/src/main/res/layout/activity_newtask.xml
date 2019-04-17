@@ -2,7 +2,25 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:background="#1E90FF"
+        android:id="@+id/toolbar_server">
+        <ImageView
+            android:id="@+id/back_main"
+            android:src="@drawable/back"
+            android:layout_width="20dp"
+            android:layout_height="15dp" />
+        <TextView
+            android:layout_marginLeft="50dp"
+            android:textColor="#FFFFFF"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Subscribling List"/>
+    </android.support.v7.widget.Toolbar>
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyler_newtask"
         android:layout_width="match_parent"

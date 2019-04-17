@@ -8,18 +8,20 @@
     android:icon="@drawable/ic_search"
     android:title="Search"
     app:actionViewClass="android.support.v7.widget.SearchView"
-    app:showAsAction="ifRoom|collapseActionView"
+    app:showAsAction="always|collapseActionView"
 
 
     />
     <item
         android:id="@+id/action_addnew"
         android:title="Add new"
+        app:showAsAction="never"
 
         />
     <item
         android:id="@+id/action_info"
         android:title="info"
+        app:showAsAction="never"
 
         />
 </menu>
